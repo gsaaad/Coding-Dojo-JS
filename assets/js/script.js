@@ -10,5 +10,5 @@ timeEl.innerHTML = "Time: " + timeIntervalStart;
 
 //defining the countdown function
 var timeInterval = setInterval(() => {
-  console.log(timeIntervalStart--);
+  timeEl.innerHTML = "Time: " + timeIntervalStart--;
 }, 1000);
