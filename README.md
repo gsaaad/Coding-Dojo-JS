@@ -1,21 +1,36 @@
 # QuizYourKnowledge
 
-## [Preview] (#Preview)
+# Table of contents!
 
-## [Description] (#Description)
+## [Preview](#Preview)
 
-## [Built-with] (#Built-with)
+## [Description](#Description)
 
-## [Website] (#Website)
+## [Built-with](#Built-with)
 
-## [Feedback] (#Feedback)
+## [Website](#Website)
 
-## Preview
+## [Feedback](#Feedback)
+
+### Preview
+
+- ![Screenshot](URL)
 
 ## Description
 
+- This project's is to utilize Javascript language to create a QuicYourKnowledge program which allows the user to test their coding knowledge through a series of questions, while a timer as been initiated and lastly to keep track of the user's score
+
 ## Built-with
+
+- HTML
+- CSS
+- Javascript (mainly)
 
 ## Website
 
+[URL]
+
 ## Feedback
+
+- Open to feedback!
+- Thank you for checking out the page!
