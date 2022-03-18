@@ -11,4 +11,8 @@ timeEl.innerHTML = "Time: " + timeIntervalStart;
 //defining the countdown function
 var timeInterval = setInterval(() => {
   timeEl.innerHTML = "Time: " + timeIntervalStart--;
+  if (timeIntervalStart === -1) {
+    clearInterval(timeInterval);
+    console.log("Time's up, here's your score: " + keepScore);
+  }
 }, 1000);
