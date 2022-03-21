@@ -44,7 +44,7 @@ nav {
   background-color: purple;
   border-radius: 20px;
   color: white;
-  padding-left: 20px;
+  padding: 0px 20px;
 }
 .quiz-option:hover {
   background-color: #e677fa;
