@@ -66,6 +66,8 @@ var nextQuestion = function () {
   if (quiz_level >= questions.length) {
     //end of questions array -> show highscore page
     console.log("End of questions! --> show highscore page!");
+    keepScore = timeIntervalStart;
+    clearInterval(timeIntervalStart);
     //checking to see that quiz_level at max questions.length
     console.log(quiz_level, questions.length);
     //show score
@@ -91,10 +93,13 @@ var startQuiz = function () {
     //function for quiz
     introEl.setAttribute("style", "display:none;");
     quizEl.setAttribute("style", "display:block;");
-
+    keepScore = timeIntervalStart;
     if (timeIntervalStart <= 0) {
       clearInterval(timeInterval);
       console.log("Time's up, here's your score: " + keepScore);
+    } else if (quiz_level >= questions.length) {
+      keepScore = timeIntervalStart;
+      clearInterval(timeInterval);
     }
   }, 1000);
 
@@ -111,18 +116,19 @@ quizEl.addEventListener("click", function (event) {
   //if user clicks this element and it matches answer for quiz iteration
   if (event.target.innerHTML === questions[quiz_level].answer) {
     //add score!
-    keepScore++;
+    keepScore = timeIntervalStart;
     //display correct!
     console.log("true");
     //increase quiz_level iteration
     quiz_level += 1;
-    //change style under box
-    //call function for next quiz!
-
+    // todo change style under box
+    // call function for next question!
     nextQuestion();
   } else {
     console.log("false");
     timeIntervalStart -= timeDeduct;
+    console.log(timeIntervalStart);
+    keepScore = timeIntervalStart;
     quiz_level += 1;
     nextQuestion();
   }
