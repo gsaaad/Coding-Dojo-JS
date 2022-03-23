@@ -52,8 +52,17 @@ nav {
 input[type="radio"] {
   transform: scale(2);
 }
+.all-done {
+  text-align: center;
+}
+#userInitials {
+  border: 5px groove #9300ad;
+  width: 15%;
+  height: 30px;
+  font-size: 30px;
+}
 .btn-start {
-  font-size: 65px;
+  font-size: 35px;
   color: white;
   background-color: purple;
   border-radius: 20px;
