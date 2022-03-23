@@ -1,3 +1,4 @@
+//main array of objects for the questions, options, and answers
 var questions = [
   //switch to options[i] if its easier?
   {
@@ -38,98 +39,105 @@ var questions = [
     answer: "console.log()",
   },
 ];
-//some querySelectors  - main containers or usable elements
+//some querySelectors  - main containers or usable bigger elements
 var timeEl = document.querySelector("#time");
 var startButton = document.querySelector("#btn-start");
 var introEl = document.querySelector("#intro");
 var quizEl = document.querySelector("#quiz");
-//some getElementById - question + answers for quiz
+var allDoneEl = document.querySelector("#all-done");
+//some getElementById - question + answers for quiz + score
 var quizQuestions = document.getElementById("question");
 var quizOption_1 = document.getElementById("A1");
 var quizOption_2 = document.getElementById("A2");
 var quizOption_3 = document.getElementById("A3");
 var quizOption_4 = document.getElementById("A4");
+var showScore = document.getElementById("score");
+//Display none for not currently useable pages/components
 quizEl.setAttribute("style", "display: none;");
+allDoneEl.setAttribute("style", "display:none;");
 //keeping score variable
 var keepScore = 0;
-//gotAnswer?
-var gotAnswer = false;
 //time deduction is going to be -5 seconds
 var timeDeduct = 5;
 //timer will start at 75 seconds
 var timeIntervalStart = 75;
+//start time and initial 75 on the clock!
 timeEl.innerHTML = "Time: " + timeIntervalStart;
+//quiz level to itterate through quiz question
 var quiz_level = 0;
 
 var nextQuestion = function () {
-  console.log("quiz_level = " + quiz_level);
-  if (quiz_level >= questions.length) {
-    //end of questions array -> show highscore page
-    console.log("End of questions! --> show highscore page!");
-    keepScore = timeIntervalStart;
-    clearInterval(timeIntervalStart);
-    //checking to see that quiz_level at max questions.length
-    console.log(quiz_level, questions.length);
-    //show score
-    console.log("here's your score: " + keepScore);
-    //reset timeinterval and make app reuseable
-    // {code}
-  } else {
-    console.log(questions[quiz_level].question + "next questions!");
-    quizQuestions.innerHTML = questions[quiz_level].question;
-    quizOption_1.innerHTML = questions[quiz_level].options[0];
-    quizOption_2.innerHTML = questions[quiz_level].options[1];
-    quizOption_3.innerHTML = questions[quiz_level].options[2];
-    quizOption_4.innerHTML = questions[quiz_level].options[3];
-  }
-};
-
-//startQuiz function
-var startQuiz = function () {
-  console.log("Clicked! Start Quiz");
-  //defining the countdown function
-  var timeInterval = setInterval(() => {
-    timeEl.innerHTML = "Time: " + timeIntervalStart--;
-    //function for quiz
-    introEl.setAttribute("style", "display:none;");
-    quizEl.setAttribute("style", "display:block;");
-    keepScore = timeIntervalStart;
-    if (timeIntervalStart <= 0) {
-      clearInterval(timeInterval);
-      console.log("Time's up, here's your score: " + keepScore);
-    } else if (quiz_level >= questions.length) {
-      keepScore = timeIntervalStart;
-      clearInterval(timeInterval);
-    }
-  }, 1000);
-
+  // function for next question, iterate through
+  console.log("this is next question " + quiz_level);
   quizQuestions.innerHTML = questions[quiz_level].question;
   quizOption_1.innerHTML = questions[quiz_level].options[0];
   quizOption_2.innerHTML = questions[quiz_level].options[1];
   quizOption_3.innerHTML = questions[quiz_level].options[2];
   quizOption_4.innerHTML = questions[quiz_level].options[3];
+  quiz_level += 1;
+};
+
+//startQuiz function
+var startQuiz = function () {
+  console.log("Clicked! Start Quiz!");
+  //defining the countdown function
+  var timeInterval = setInterval(() => {
+    //interval start!
+    timeEl.innerHTML = "Time: " + timeIntervalStart--;
+    //display configuration
+    introEl.setAttribute("style", "display:none;");
+    quizEl.setAttribute("style", "display:block;");
+    allDoneEl.setAttribute("style", "display:none;");
+    //updating score
+    keepScore = timeIntervalStart;
+    //if time is less negative
+    if (timeIntervalStart <= -1) {
+      clearInterval(timeInterval);
+      console.log("Time's up, here's your score: " + (keepScore + 1));
+      //end of questions array -> show highscore page
+      console.log("End of questions! --> show highscore page!");
+      keepScore = timeIntervalStart + 1;
+      clearInterval(timeIntervalStart);
+      //checking to see that quiz_level at max questions.length
+      console.log(quiz_level, questions.length);
+      //show score
+      quizEl.setAttribute("style", "display:none;");
+      allDoneEl.setAttribute("style", "display:block;");
+      console.log(keepScore);
+      showScore.innerHTML = "Your score is:" + keepScore;
+    } else if (quiz_level >= questions.length) {
+      keepScore = timeIntervalStart;
+      clearInterval(timeInterval);
+    }
+  }, 1000);
+  nextQuestion();
 };
 
 //add event listener for start button
 startButton.addEventListener("click", startQuiz);
 quizEl.addEventListener("click", function (event) {
   //if user clicks this element and it matches answer for quiz iteration
-  if (event.target.innerHTML === questions[quiz_level].answer) {
-    //add score!
+  if (quiz_level >= questions.length) {
+    quizEl.setAttribute("style", "display:none;");
+    allDoneEl.setAttribute("style", "display:block;");
+    showScore.innerHTML = "Your score is:" + (keepScore + 1);
+  } else if (event.target.innerHTML === questions[quiz_level].answer) {
+    console.log(quiz_level, questions.length);
+    //update score
     keepScore = timeIntervalStart;
-    //display correct!
+    //display correct! console.log
     console.log("true");
-    //increase quiz_level iteration
-    quiz_level += 1;
-    // todo change style under box
-    // call function for next question!
+    //next question
     nextQuestion();
+
+    // todo change style under box
   } else {
     console.log("false");
     timeIntervalStart -= timeDeduct;
+    console.log(quiz_level, questions.length);
     console.log(timeIntervalStart);
     keepScore = timeIntervalStart;
-    quiz_level += 1;
+    // todo change style under box
     nextQuestion();
   }
 });
