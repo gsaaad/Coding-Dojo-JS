@@ -68,3 +68,18 @@ input[type="radio"] {
   border-radius: 20px;
   width: 20%;
 }
+.score-container {
+  font-size: 30px;
+  text-align: center;
+  padding-top: 50px;
+}
+.score-list {
+  margin-top: 100px;
+  list-style-position: inside;
+  border-right: #00aeff 500px dotted;
+}
+.score {
+  border-left: #00aeff 500px ridge;
+  width: 67%;
+  margin-top: 100px;
+}

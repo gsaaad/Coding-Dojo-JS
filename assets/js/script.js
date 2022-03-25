@@ -45,6 +45,8 @@ var startButton = document.querySelector("#btn-start");
 var introEl = document.querySelector("#intro");
 var quizEl = document.querySelector("#quiz");
 var allDoneEl = document.querySelector("#all-done");
+var enterScoreEl = document.querySelector("#enterScore");
+var scoreContainer = document.querySelector("#score-list");
 //some getElementById - question + answers for quiz + score
 var quizQuestions = document.getElementById("question");
 var quizOption_1 = document.getElementById("A1");
@@ -52,6 +54,7 @@ var quizOption_2 = document.getElementById("A2");
 var quizOption_3 = document.getElementById("A3");
 var quizOption_4 = document.getElementById("A4");
 var showScore = document.getElementById("score");
+var userInitials = document.getElementById("userInitials");
 //Display none for not currently useable pages/components
 quizEl.setAttribute("style", "display: none;");
 allDoneEl.setAttribute("style", "display:none;");
@@ -60,7 +63,7 @@ var keepScore = 0;
 //time deduction is going to be -5 seconds
 var timeDeduct = 5;
 //timer will start at 75 seconds
-var timeIntervalStart = 75;
+var timeIntervalStart = 2;
 //start time and initial 75 on the clock!
 timeEl.innerHTML = "Time: " + timeIntervalStart;
 //quiz level to itterate through quiz question
@@ -139,5 +142,18 @@ quizEl.addEventListener("click", function (event) {
     keepScore = timeIntervalStart;
     // todo change style under box
     nextQuestion();
+  }
+});
+
+enterScoreEl.addEventListener("click", function (event) {
+  userInitials.addEventListener("change", function (event) {
+    var savedNamed = event.target.value;
+    console.log(savedNamed);
+    localStorage.setItem(savedNamed, keepScore);
+  });
+  if (event.target.id === "btn-submit") {
+    window.location = "../Highscore.html";
+    var newScore = 55;
+    scoreContainer.appendChild(newScore);
   }
 });
