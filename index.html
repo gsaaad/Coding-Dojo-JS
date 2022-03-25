@@ -13,7 +13,7 @@
       <p class="time" id="time">Time:</p>
     </nav>
     <main class="container">
-      <div class="intro" id="intro">
+      <section class="intro" id="intro">
         <div class="align-center">
           <h1>Welcome to your Coding DOJO!</h1>
         </div>
@@ -35,8 +35,8 @@
         <div class="align-center">
           <button class="btn-start" id="btn-start">Start</button>
         </div>
-      </div>
-      <div class="quiz" id="quiz">
+      </section>
+      <section class="quiz" id="quiz">
         <h3 id="question"></h3>
         <ol>
           <li class="quiz-option" id="A1"></li>
@@ -44,8 +44,8 @@
           <li class="quiz-option" id="A3"></li>
           <li class="quiz-option" id="A4"></li>
         </ol>
-      </div>
-      <div class="all-done" id="all-done">
+      </section>
+      <section class="all-done" id="all-done">
         <h2>All Done!</h2>
         <p id="score">Your score is:</p>
         <p id="enterScore">
@@ -53,7 +53,19 @@
           <input type="text" name="userInitials" id="userInitials" />
           <button class="btn-start" id="btn-submit">Submit</button>
         </p>
-      </div>
+      </section>
+      <section class="score-container" id="score-container">
+        <h1>Highscore</h1>
+        <button class="btn-start">Main page</button>
+        <button class="btn-start">clear Highscore</button>
+        <ol class="score-list" id="score-list">
+          <li class="score">USER INITIAL - first score</li>
+          <li class="score">USER INITIAL - first score</li>
+          <li class="score">USER INITIAL - first score</li>
+          <li class="score">USER INITIAL - first score</li>
+          <li class="score">USER INITIAL - first score</li>
+        </ol>
+      </section>
     </main>
 
     <script src="./assets/js/script.js"></script>

@@ -14,7 +14,7 @@
 
 ### Preview
 
-- ![Screenshot](URL)
+- ![Screenshot](./assets/images/Preview.png)
 
 ## Description
 
@@ -29,7 +29,7 @@
 
 ## Website
 
-[URL]
+https://gsaaad.github.io/QuizYourKnowledge/
 
 ## Feedback
 

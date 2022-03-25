@@ -46,24 +46,27 @@ var introEl = document.querySelector("#intro");
 var quizEl = document.querySelector("#quiz");
 var allDoneEl = document.querySelector("#all-done");
 var enterScoreEl = document.querySelector("#enterScore");
-var scoreContainer = document.querySelector("#score-list");
+var scoreContainer = document.querySelector("#score-container");
+
 //some getElementById - question + answers for quiz + score
 var quizQuestions = document.getElementById("question");
 var quizOption_1 = document.getElementById("A1");
 var quizOption_2 = document.getElementById("A2");
 var quizOption_3 = document.getElementById("A3");
 var quizOption_4 = document.getElementById("A4");
+var scoreList = document.getElementById("score-list");
 var showScore = document.getElementById("score");
 var userInitials = document.getElementById("userInitials");
 //Display none for not currently useable pages/components
 quizEl.setAttribute("style", "display: none;");
 allDoneEl.setAttribute("style", "display:none;");
+scoreContainer.setAttribute("style", "display:none;");
 //keeping score variable
 var keepScore = 0;
 //time deduction is going to be -5 seconds
 var timeDeduct = 5;
 //timer will start at 75 seconds
-var timeIntervalStart = 2;
+var timeIntervalStart = 75;
 //start time and initial 75 on the clock!
 timeEl.innerHTML = "Time: " + timeIntervalStart;
 //quiz level to itterate through quiz question
@@ -152,8 +155,7 @@ enterScoreEl.addEventListener("click", function (event) {
     localStorage.setItem(savedNamed, keepScore);
   });
   if (event.target.id === "btn-submit") {
-    window.location = "../Highscore.html";
-    var newScore = 55;
-    scoreContainer.appendChild(newScore);
+    allDoneEl.setAttribute("style", "display:none;");
+    scoreContainer.setAttribute("style", "display:block;");
   }
 });
